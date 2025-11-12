@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+console.log(OrbitControls)
+
 // initialize the scene
 const scene = new THREE.Scene()
 
@@ -28,4 +30,13 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas
 })
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.render(scene, camera)
+// instantiate the controls
+const controls = new OrbitControls( camera, canvas );
+const renderloop = () =>{
+ renderer.render(scene, camera)
+  window.requestAnimationFrame(renderloop)
+}
+renderloop()
+
+
+
